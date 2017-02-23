@@ -8,3 +8,6 @@ distribution.  Touches on alternative methods, e.g. graphical lasso, for
 precision matrix recovery.  Then discusses the
 [Asymptotic Normal Thresholding](https://arxiv.org/abs/1309.6024) method
 proposed by Zhou et al.
+
+I recommend compiling these slides with XeLaTeX, which handles fonts and
+slides well.
