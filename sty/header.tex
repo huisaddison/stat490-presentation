@@ -1,4 +1,4 @@
-\documentclass[xetex,mathserif,serif]{beamer}
+\documentclass[notheorems,xetex,mathserif,serif]{beamer}
 
 \usepackage{xunicode}
 \usepackage{xltxtra}
@@ -94,3 +94,6 @@
  ]{LinLibertine_R.otf}
 
 
+\newcommand{\theorem}[1]{
+    {\fontsize{0.45cm}{0cm}\selectfont\textbf{Theorem.}}\; \textit{#1}
+}
