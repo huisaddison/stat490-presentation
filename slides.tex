@@ -1,0 +1,140 @@
+\input{sty/header.tex}
+\usepackage{../../latex/personalmacros}
+\usepackage{sty/personalslides}
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Manifest
+% --------
+% - Title
+% - Outline
+% - Review of Graphical Models
+% - Review of Multivariate Gaussian
+% - Precision Matrices in Context of Gaussian Graphical Models
+% - Pairwise Inference for Entrywise Recovery
+% - Upper Bound ($\ell_infty$ norm)
+%   - Statement of Theorems 2 and 3
+%   - Proof / Intuition for Theorems 2 and 3
+% - Lower Bound ($\ell_infty$ norm)
+%   - Statement of Theorem 5
+%   - Proof / Intuition for Theorem 5
+% - Next Steps
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{}
+\vfill
+\vspace{0.2cm}
+{
+    \color{yaleblue}
+    \fontsize{0.5cm}{0cm}\selectfont
+    Midterm Presentation: \\
+}
+\vspace{1.0cm}
+{
+    \fontsize{0.7cm}{0cm}\selectfont
+    Risk Properties in Bandable Precision Matrix Estimation\\
+}
+
+\hfill
+
+\vspace{1.8cm}
+\begin{minipage}{1.0\textwidth}\raggedleft
+    \color{yaleblue}
+    Addison Hu   \\
+    Statistics 490 \\
+    01 March 2017
+\end{minipage}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Outline
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{}
+    \slideheader{Outline}
+    \begin{enumerate}
+        \item Refresher on Graphical Models \& Multivariate Gaussian
+        \item Pairwise Inference for Entrywise Recovery of $\Sigma^{-1}$
+        \item Risk Bounds for Entrywise Recovery in $\norm{\cdot}_\infty$
+        \item Next Steps
+    \end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Refresher
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{}
+    \sectionslide{Refresher}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{}
+    \slideheader{Graphical Models}
+    %% TODO
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{}
+    \slideheader{Markov Random Fields}
+    %% TODO
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{}
+    \slideheader{Example: Hub and Spoke Model}
+    \vspace{1cm}
+    \begin{columns}[T]
+        \begin{column}{.48\textwidth}
+            $$
+            \bmat{
+                1 & 0 & 0 & 1 & 0 & 0 & 0   \\
+                0 & 1 & 0 & 1 & 0 & 0 & 0   \\
+                0 & 0 & 1 & 1 & 0 & 0 & 0   \\
+                1 & 1 & 1 & 1 & 1 & 1 & 1   \\
+                0 & 0 & 0 & 1 & 1 & 0 & 0   \\
+                0 & 0 & 0 & 1 & 0 & 1 & 0   \\
+                0 & 0 & 0 & 1 & 0 & 0 & 1
+            }
+            $$
+        \end{column}
+        \hfill
+        \begin{column}{.48\textwidth}
+            \vspace{-0.2cm}
+            \hspace{-0.5cm}
+            \includegraphics[scale=0.25]{../img/spokes.png}
+        \end{column}
+    \end{columns}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{}
+    \slideheader{Multivariate Gaussian}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Pairwise Recovery
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{}
+    \sectionslide{Precision Matrix Estimation}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{}
+    \slideheader{Maximum Likelihood Estimation}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{}
+    \slideheader{Maximum Likelihood Estimation: Issues}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{}
+    \slideheader{Graphical Lasso}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{}
+    \slideheader{Asymptotic Normal Thresholding (ANT)}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Risk Bounds
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{}
+    \sectionslide{Risk Bounds in $\norm{\cdot}_\infty$}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+
