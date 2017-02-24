@@ -5,6 +5,7 @@
 \usepackage{sty/personalslides}
 
 \begin{document}
+\title{Senior Thesis: Midterm Presentation}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Manifest
 % --------
@@ -200,10 +201,97 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile] \frametitle{}
     \slideheader{Graphical Lasso}
+
+    To encourage sparsity, Tibshirani \textit{et al} proposed imposing an
+    entrywise $\ell_1$ penalty on $\Omega$.
+
+    \begin{align*}
+        \maximize{
+            \log\det|\Omega| - \langle \hat\Sigma, \Omega \rangle
+            - \rho \norm{\Omega}_1
+        }{\Omega}{\Omega \gengeq 0}
+    \end{align*}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile] \frametitle{}
     \slideheader{Asymptotic Normal Thresholding (ANT)}
+    \begin{itemize}
+        \item Goal: Obtain entrywise estimates $\hat\omega_{ij}$ of $\Omega$
+            that are asymptotically norm and minimax, and then threshold to
+            enforce sparsity.
+        \item Idea: For each pair $A = \{i, j\}$, regress the variables $X_i,
+            X_j$ on all other variables:
+            $$
+            \XX_A = \XX_{A^c}\beta + \epsilon_A
+            $$
+            where $\epsilon_A$ is a noise term, distributed normally with mean
+            zero, and which are independent of $A^c$.
+        \item Rationale: $\Omega_{A, A} = \Sigma_{A|A^c} = \var(X_A|X_{A^c})
+            = \var(\epsilon_A)$.  Errors give entries of precision matrix.
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{}
+    \slideheader{Oracle MLE}
+
+    \begin{itemize}
+        \item Suppose we could draw from the distribution of $\epsilon_A$
+            directly.  How would we estimate $\Omega_{A, A}$?  
+        \item The maximum likelihood estimator in this case is:
+            $$
+            \Theta^{ora}_{A, A} = (\theta^{ora}_{kl})_{k, l \in A}
+            = \frac{\epsilon_A^\top\epsilon_A}{n}
+            $$
+            where we call $\Theta^{ora}$ the \textit{oracle} MLE covariance estimates.
+        \item The corresponding oracle MLE precision estimates are then given
+            by:
+            $$
+            \Omega^{ora}_{A, A} = (\omega^{ora}_{kl})_{k, l \in A}
+                = \left(\Theta^{ora}_{A, A}\right)^{-1}
+            $$
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{}
+    \slideheader{Residual Estimates}
+    \begin{itemize}
+        \item In practice, we only observe $\XX$, so we must estimate
+            $\epsilon_A$.
+        \item Suppose we have an adequate estimates of the regression weights
+            $\hat\beta$.  Then:
+            $$
+            \hat\epsilon_A = \XX_A - \XX_{A^c}\hat\beta
+            $$
+        \item Consequently:
+            \vspace{-0.1cm}
+            \begin{align*}
+                \hat\Theta_{A, A}
+                &= \frac{\hat\epsilon_A^\top\hat\epsilon_A}{n}    \\
+                \hat\Omega_{A, A} &= \hat\Theta_{A, A}^{-1}
+            \end{align*}
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{}
+	\slideheader{Scaled Lasso Estimator}
+
+    For each $m \in A = \{i, j\}$, perform the optimization: 
+
+    $$
+    \left\{\hat\beta_m, \hat\theta^{1/2}_{mm}\right\}
+    =
+    \arg\min_{\substack{b\in\RR^{p-2},\\\sigma \in \RR^+}}
+    \left\{
+    \frac{\norm{\XX_m - \XX_{A^c}b}^2}{2n\sigma}
+    + \frac{\sigma}{2} 
+    + \lambda\sum_{k\in A^c}\frac{\norm{\XX_k}}{\sqrt{n}}|b_k|
+    \right\}
+    $$
+    
+    Intuitively, the scaling factor on the $\ell_1$ penalty implicitly standardizes
+    the design vector to length $\sqrt{n}$ such that the $\ell_1$ penalty is
+    applied to the new coefficients $\frac{\norm{\XX_k}}{\sqrt n}b_k$.
+
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Risk Bounds
@@ -215,8 +303,10 @@
 \begin{frame}[fragile] \frametitle{}
     \slideheader{Risk Upper Bound}
 
-    \theorem{Lorem ipsum.}
-
+    \begin{itemize}
+        \item A risk upper bound on an estimator gives a guarantee on its
+            worst case performance.
+    \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile] \frametitle{}
