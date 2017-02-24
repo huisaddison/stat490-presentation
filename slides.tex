@@ -67,12 +67,35 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile] \frametitle{}
     \slideheader{Graphical Models}
-    %% TODO
+    \begin{itemize}
+        \item Graphical models provide a framework within which to consider
+            dependence structure within a group of variables.
+        \item In doing so, we may relax the i.i.d. assumption and still perform
+            inference feasibly.
+        \item Examples:
+            \begin{itemize}
+                \item Facebook users graph
+                \item Gene interaction networks
+            \end{itemize}
+    \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile] \frametitle{}
     \slideheader{Markov Random Fields}
-    %% TODO
+    \begin{itemize}
+        \item Consider a graph $G = (V, E)$, and a corresponding set of
+            random variables $\{X_i\}_{i=1}^{|V|}$, where the random variables
+            are indexed by $u \in V$.
+        \item \textbf{Pairwise Markov property:} $X_u \indep X_v | X_{V
+            \setminus\{u, v\}}$ for any two non-adjacency nodes $u, v$.
+        \item \textbf{Local Markov property:} $X_u \indep X_{V \setminus
+            \mathrm{cl}(u)} | X_{\mathrm{nb}(u)}$ for any node $v$.
+        \item \textbf{Global Markov property:} $X_A \indep X_B | X_S$ for
+            disjoint $A, B \subset V$, and a separating subset $S$.
+        \item Inference is easy when the edges are known; but is more
+            interesting when they are unknown.
+    \end{itemize}
+    % https://en.wikipedia.org/wiki/Markov_random_field
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile] \frametitle{}
@@ -82,13 +105,20 @@
         \begin{column}{.48\textwidth}
             $$
             \bmat{
-                \blueone & \greyzero & \greyzero & \blueone & \greyzero & \greyzero & \greyzero   \\
-                \greyzero & \blueone & \greyzero & \blueone & \greyzero & \greyzero & \greyzero   \\
-                \greyzero & \greyzero & \blueone & \blueone & \greyzero & \greyzero & \greyzero   \\
-                \blueone & \blueone & \blueone & \blueone & \blueone & \blueone & \blueone   \\
-                \greyzero & \greyzero & \greyzero & \blueone & \blueone & \greyzero & \greyzero   \\
-                \greyzero & \greyzero & \greyzero & \blueone & \greyzero & \blueone & \greyzero   \\
-                \greyzero & \greyzero & \greyzero & \blueone & \greyzero & \greyzero & \blueone
+                \blueone & \greyzero & \greyzero & \blueone & \greyzero &
+                \greyzero & \greyzero   \\ 
+                \greyzero & \blueone & \greyzero & \blueone & \greyzero &
+                \greyzero & \greyzero   \\ 
+                \greyzero & \greyzero & \blueone & \blueone & \greyzero &
+                \greyzero & \greyzero   \\ 
+                \blueone & \blueone & \blueone & \blueone & \blueone & \blueone
+                & \blueone   \\ 
+                \greyzero & \greyzero & \greyzero & \blueone & \blueone &
+                \greyzero & \greyzero   \\ 
+                \greyzero & \greyzero & \greyzero & \blueone & \greyzero &
+                \blueone & \greyzero   \\ 
+                \greyzero & \greyzero & \greyzero & \blueone & \greyzero &
+                \greyzero & \blueone
             }
             $$
         \end{column}
@@ -103,6 +133,41 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile] \frametitle{}
     \slideheader{Multivariate Gaussian}
+
+    Suppose $X \dist \Nn(\mu, \Sigma)$. Its density function is given by:
+	$$
+    p(\xx) = \left(2\pi\right)^{-\frac{p}{2}}\left|\Sigma\right|^{-\frac{1}{2}}
+    \exp\lc-\frac{1}{2}(\xx - \mathbf{\mu})^\top \Sigma^{-1}
+    (\xx - \mathbf{\mu})\rc
+    $$
+    \begin{itemize}
+        \item Closure properties:
+            \begin{itemize}
+                \item Sum of independent Gaussian random variables is Gaussian.
+                \item Marginal of a joint Gaussian distribution is Gaussian.
+                \item Condition of a joint Gaussian distribution is Gaussian.
+            \end{itemize}
+        \item The sparsity pattern of $\Sigma^{-1}$ concides with the adjacency
+            matrix of the associated MRF.
+    \end{itemize}
+    % http://cs229.stanford.edu/section/more_on_gaussians.pdf
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{}
+    \slideheader{Multivariate Gaussian, cont.}
+
+	\begin{itemize}
+        \item Closure under marginalization:  Suppose $A \subset V$.  Then
+            $$
+            \Sigma_{A} = \lp\Sigma_{ij}\rp_{i\in A, j \in A}
+            $$
+        \item Closure under conditioning: Suppose  $A, B \subset V$, $A \cup B
+            = V, A \cap B = \varnothing$.  Then:
+            \begin{align*}
+                \lp \Omega_A \rp ^{-1}  &= \Sigma_{A|B}   \\
+                \lp \Sigma_A \rp ^{-1}  &= \Omega_{A|B}   \\
+            \end{align*}
+	\end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Pairwise Recovery
@@ -113,13 +178,23 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile] \frametitle{}
     \slideheader{Maximum Likelihood Estimation}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}[fragile] \frametitle{}
-    \slideheader{Maximum Likelihood Estimation: Issues}
+
+    Assume $\mu = 0$.  Then the maximum likelihood estimation problem is:
+	\begin{align*}
+		\maximize{
+			-\log\det|\Sigma| - \langle \hat\Sigma, \Sigma^{-1} \rangle
+		}{\Sigma}{\Sigma \gengeq 0}
+	\end{align*}
+
     \begin{itemize}
-        \item Invertibility \& Conditioning
-        \item Noise \& Sparsity
+        \item Maximum Likelihood Estimate given by $\hat\Sigma = 
+            \frac{1}{n} \XX^\top \XX$.
+        \item Idea: $\hat\Omega = \hat\Sigma^{-1}$.
+        \item Issues:
+            \begin{itemize}
+                \item Invertibility \& Conditioning
+                \item Noise \& Sparsity
+            \end{itemize}
     \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
