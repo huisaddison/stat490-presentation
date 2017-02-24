@@ -301,20 +301,128 @@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile] \frametitle{}
+    \slideheader{Minimaxity}
+
+    \vspace{0.5cm}
+    Recall that we call an estimator $\delta^*$ \textit{minimax} if it achieves
+    the minimax risk:
+    $$
+    \sup_{\theta\in\Theta} R(\delta^*, \theta)
+    =  \inf_\delta \sup_{\theta\in\Theta} R(\delta, \theta)
+    \defas \text{minimax risk}
+    $$
+    where $R(\delta, \theta)$ is a risk function:
+    $$
+    R(\delta, \theta) \defas \EE_{X|\theta}\; \ell(\delta(X), \theta)
+    $$
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{}
+    \slideheader{Parameter Space Construction}
+    \vspace{0.5cm}
+
+    We consider the following parameter space for $\lambda > 0$:
+    $$
+    \mathcal{G}^* = \left\{
+    \Omega: s_\lambda(\Omega) \leq s, M^{-1}
+        \leq \lambda_\mathrm{min}(\Omega)
+        \leq \lambda_\mathrm{max}(\Omega)
+        \leq M
+    \right\}
+    $$
+    where
+    $$
+    s_\lambda = s_\lambda(\Omega) = \max_j\sum_{i\neq j}
+    \min\left\{1, \frac{|\omega_{ij}|}{\lambda}\right\}
+    $$
+    for $\Omega = (\omega_{ij})_{1\leq i, j\leq p}$.
+
+    The authors take $\lambda$ on the order $\sqrt\frac{\log p}{n}$ in this
+    paper.
+    %% TODO: Why?
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{}
     \slideheader{Risk Upper Bound}
 
     \begin{itemize}
         \item A risk upper bound on an estimator gives a guarantee on its
             worst case performance.
+        \item The ANT estimator achieves, for some constants $C_2, C_3$,
+            the following bounds in probability:
+            \begin{align*}
+                \hspace{-0.8cm}
+            \max_{\Omega\in\Gg^*(M, s, \lambda)}\max_{1 \leq i \leq j \leq p}
+            \PP\left\{
+            |\hat\omega_{ij} - \omega_{ij}| > C_2 \max\left\{
+            s\frac{\log p}{n}, \sqrt\frac{1}{n}
+            \right\}
+            \right\} \leq \varepsilon_0
+            \end{align*}
+            \begin{align*}
+                \hspace{-0.8cm}
+            \max_{\Omega\in\Gg^*(M, s, \lambda)}
+            \PP\left\{
+            \norm{\hat\Omega - \Omega}_\infty > C_3 \max\left\{
+            s\frac{\log p}{n}, \sqrt\frac{\log p}{n}
+            \right\}
+            \right\} = o(p^{-\delta + 3})
+            \end{align*}
     \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile] \frametitle{}
-    \slideheader{Oracle Inequalities}
+    \slideheader{Risk Upper Bound: Oracle Inequalities}
+
+    First, we bound the distance from the estimator to the oracle MLEs.  There
+    exist constants $C_1, C_1'$ such that:
+    \begin{align*}
+        \max_{A:A=\{i, j\}}
+        \PP\left\{
+        \norm{\hat\Theta_{A, A} - \Theta_{A, A}^{ora}}_\infty
+        > C_1 s \frac{\log p}{n}
+        \right\}\leq o(p^{-\delta + 1})
+    \end{align*}
+    and
+    \begin{align*}
+        \max_{A:A=\{i, j\}}
+        \PP\left\{
+        \norm{\hat\Omega_{A, A} - \Omega_{A, A}^{ora}}_\infty
+        > C_1' s \frac{\log p}{n}
+        \right\}\leq o(p^{-\delta + 1})
+    \end{align*}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile] \frametitle{}
-    \slideheader{Coupling Argument}
+    \slideheader{Risk Upper Bound: Coupling Argument}
+
+    \begin{itemize}
+        \item Denote $\kappa_{ij} = \sqrt{n}\frac{
+                \omega_{ij}^{ora} - \omega_{ij}
+            }{
+                \sqrt{\omega_{ii}\omega_{jj} + \omega_{ij}^2}
+            }$.
+        \item Under suitable conditions (KMT Inequality), $\kappa_{ij}$ behaves
+            roughly like a standard normal random variable.
+        \item This gives a bound in probability on the deviation of
+            $\omega_{ij}^{ora}$ from the true $\omega_{ij}$:
+            $$
+                \PP\left\{
+                |\omega_{ij}^{ora} - \omega_{ij}|
+                > C_4 \sqrt{\frac{1}{n}}
+                \right\}
+                \leq \frac{3}{4}\epsilon
+            $$
+        \item A similar argument gives:
+            $$
+                \PP\left\{
+                    \norm{\hat\Omega_{A, A} - \Omega_{A, A}}_\infty
+                > C_5 \sqrt{\frac{\log p}{n}}
+                \right\}
+                = o(p^{-\delta})
+            $$
+    \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile] \frametitle{}
