@@ -1,4 +1,6 @@
 \input{sty/header.tex}
+\newcommand{\blueone}{{\color{yaleblue} 1}}
+\newcommand{\greyzero}{{\color{solarized@base00} 0}}
 \usepackage{sty/personalmacros}
 \usepackage{sty/personalslides}
 
@@ -80,13 +82,13 @@
         \begin{column}{.48\textwidth}
             $$
             \bmat{
-                1 & 0 & 0 & 1 & 0 & 0 & 0   \\
-                0 & 1 & 0 & 1 & 0 & 0 & 0   \\
-                0 & 0 & 1 & 1 & 0 & 0 & 0   \\
-                1 & 1 & 1 & 1 & 1 & 1 & 1   \\
-                0 & 0 & 0 & 1 & 1 & 0 & 0   \\
-                0 & 0 & 0 & 1 & 0 & 1 & 0   \\
-                0 & 0 & 0 & 1 & 0 & 0 & 1
+                \blueone & \greyzero & \greyzero & \blueone & \greyzero & \greyzero & \greyzero   \\
+                \greyzero & \blueone & \greyzero & \blueone & \greyzero & \greyzero & \greyzero   \\
+                \greyzero & \greyzero & \blueone & \blueone & \greyzero & \greyzero & \greyzero   \\
+                \blueone & \blueone & \blueone & \blueone & \blueone & \blueone & \blueone   \\
+                \greyzero & \greyzero & \greyzero & \blueone & \blueone & \greyzero & \greyzero   \\
+                \greyzero & \greyzero & \greyzero & \blueone & \greyzero & \blueone & \greyzero   \\
+                \greyzero & \greyzero & \greyzero & \blueone & \greyzero & \greyzero & \blueone
             }
             $$
         \end{column}
