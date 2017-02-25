@@ -179,6 +179,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile] \frametitle{}
     \slideheader{Maximum Likelihood Estimation}
+    \vspace{0.5cm}
 
     Assume $\mu = 0$.  Then the maximum likelihood estimation problem is:
 	\begin{align*}
@@ -186,6 +187,7 @@
 			-\log\det|\Sigma| - \langle \hat\Sigma, \Sigma^{-1} \rangle
 		}{\Sigma}{\Sigma \gengeq 0}
 	\end{align*}
+    \vspace{-0.8cm}
     \begin{itemize}
         \item Maximum Likelihood Estimate given by $\hat\Sigma = 
             \frac{1}{n} \XX^\top \XX$.
@@ -201,6 +203,7 @@
 \begin{frame}[fragile] \frametitle{}
     \slideheader{Graphical Lasso}
 
+    \vspace{0.6cm}
     To encourage sparsity, Tibshirani \textit{et al} proposed imposing an
     entrywise $\ell_1$ penalty on $\Omega$.
 
@@ -457,8 +460,26 @@
 \begin{frame}[fragile] \frametitle{}
     \slideheader{Le Cam's Two-Point Argument}
     \begin{enumerate}
-        \item Insight: Maximum risk is bounded below by Bayes risk.
+        \item Insight: Maximum of set bounded below by (weighted) average.
+        \item Method: Construct a subparameter space $\Omega_L \in \Gg$, find
+            the average risk over subparameter space.
     \end{enumerate}
+    \vspace{-0.3cm}
+    Example: Suppose probability distributions $P_1, P_2$ parameterized by
+    $\theta_1, \theta_2$, respectively.
+    \vspace{-0.2cm}
+    \begin{align*}
+        \sup_{\theta \in \mathcal{M}} \EE_{X|\theta} (\delta(X) - \theta)^2
+        &\geq \frac{1}{2}\lb
+        \EE_{X|\theta_1} (\delta(X) - \theta_1)^2
+        +
+        \EE_{X|\theta_2} (\delta(X) - \theta_2)^2
+        \rb \\
+        &=      \cdots  \\
+        &\geq (\theta_1 - \theta_2)^2 \int \min\{p_1, p_2\} \dd \mu(x)
+    \end{align*}
+    Balancing act between maximizing $d(\theta_1, \theta_2)$ versus
+    $\norm{P_1 \wedge P_2}$.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile] \frametitle{}
