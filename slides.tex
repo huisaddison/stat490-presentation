@@ -225,8 +225,9 @@
             $$
             where $\epsilon_A$ is a noise term, distributed normally with mean
             zero, and which are independent of $A^c$.
-        \item Rationale: $\Omega_{A, A} = \Sigma_{A|A^c} = \var(X_A|X_{A^c})
-            = \var(\epsilon_A)$.  Errors give entries of precision matrix.
+        \item Rationale: $\Omega_{A, A}^{-1} \defas \Theta_{A, A} \defas
+            \Sigma_{A|A^c} = \var(X_A|X_{A^c}) = \var(\epsilon_A)$.  Errors
+            give entries of precision matrix.
     \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -455,6 +456,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile] \frametitle{}
     \slideheader{Le Cam's Two-Point Argument}
+    \begin{enumerate}
+        \item Insight: Maximum risk is bounded below by Bayes risk.
+    \end{enumerate}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile] \frametitle{}
