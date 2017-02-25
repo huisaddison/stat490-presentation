@@ -426,6 +426,31 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile] \frametitle{}
     \slideheader{Risk Lower Bound}
+
+    \vspace{0.5cm}
+    Suppose $\{X^{(i)}\}_{i=1}^n \iid \Nn(0, \Omega)$, $\Omega \in \Gg_0(M,
+    k_{n, p})$.  An application of Le Cam's method yields the following minimax
+    lower bounds:
+    \vspace{0.2cm}
+    $$
+    \hspace{-0.5cm}
+    \inf_{\hat\omega_{ij}} \sup_{\Gg(M, k_{n, p})}
+    \PP\left\{
+    |\hat\omega_{ij} - \omega_{ij}| > \max\left\{
+    C_1\frac{k_{n, p}\log p}{n}, C_2 \sqrt\frac{1}{n}
+    \right\}
+    \right\} > c_1 > 0
+    $$
+    $$
+    \hspace{-0.2cm}
+    \inf_{\hat\Omega} \sup_{\Gg(M, k_{n, p})}
+    \PP\left\{
+        \norm{\hat\Omega - \Omega}_\infty > \max\left\{
+    C_1'\frac{k_{n, p}\log p}{n}, C_2' \sqrt\frac{\log}{n}
+    \right\}
+    \right\} > c_2 > 0
+    $$
+    
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile] \frametitle{}
