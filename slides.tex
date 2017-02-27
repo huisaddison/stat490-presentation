@@ -227,7 +227,7 @@
             \XX_A = \XX_{A^c}\beta + \epsilon_A
             $$
             where $\epsilon_A$ is a noise term, distributed normally with mean
-            zero, and which are independent of $A^c$.
+            zero, and which are independent of $\XX_{A^c}$.
         \item Rationale: $\Omega_{A, A}^{-1} \defas \Theta_{A, A} \defas
             \Sigma_{A|A^c} = \var(X_A|X_{A^c}) = \var(\epsilon_A)$.  Errors
             give entries of precision matrix.
@@ -469,7 +469,7 @@
     $\theta_1, \theta_2$, respectively.
     \vspace{-0.2cm}
     \begin{align*}
-        \sup_{\theta \in \mathcal{M}} \EE_{X|\theta} (\delta(X) - \theta)^2
+        \sup_{\theta \in \Theta} \EE_{X|\theta} (\delta(X) - \theta)^2
         &\geq \frac{1}{2}\lb
         \EE_{X|\theta_1} (\delta(X) - \theta_1)^2
         +
