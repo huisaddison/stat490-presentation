@@ -54,8 +54,8 @@
     \begin{enumerate}
         \item Graphical Models \& Multivariate Gaussian
         \item Pairwise Inference for Entrywise Recovery of $\Sigma^{-1}$
-        \item Risk Bounds for Entrywise Recovery in $\norm{\cdot}_\infty$
-        \item Next Steps
+        \item Risk Bounds
+        \item Banded Case
     \end{enumerate}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -184,7 +184,7 @@
     Assume $\mu = 0$.  Then the maximum likelihood estimation problem is:
 	\begin{align*}
 		\maximize{
-			-\log\det|\Sigma| - \langle \hat\Sigma, \Sigma^{-1} \rangle
+            \log\det|\Sigma^{-1}| - \langle \hat\Sigma, \Sigma^{-1} \rangle
 		}{\Sigma}{\Sigma \gengeq 0}
 	\end{align*}
     \vspace{-0.8cm}
@@ -300,7 +300,7 @@
 % Risk Bounds
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile] \frametitle{}
-    \sectionslide{Risk Bounds in $\norm{\cdot}_\infty$}
+    \sectionslide{Risk Bounds}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile] \frametitle{}
@@ -483,8 +483,56 @@
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile] \frametitle{}
-    \sectionslide{Next Steps}
+    \slideheader{Risk Bounds in Matrix Norm}
+    \begin{itemize}
+        \item Bounds in $\norm{\cdot}_\infty$ can be turned into bounds
+            in operator norm.
+        \item The ANT estimator thresholds:
+            $$\hat\omega_{ij}^\mathrm{thr} =
+            \hat\omega_{ij}\one\lc|\omega_{ij}| >
+            \sqrt{8\varepsilon(\omega_{ii} \omega_{jj} +
+            \omega_{ij}^2)n^{-1}\log p}\rc$$
+        \item The thresholded estimator achieves:
+            $$
+            \sup_{\Gg^*(M, k_{n, p}, \lambda)}
+            \EE\norm{\hat\Omega_\mathrm{thr} - \Omega}^2_w \leq
+            Cs^2\frac{\log p}{n}
+            $$
+            which is shown to be optimal in Cai, Liu, Zhou (2012).
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{}
+    \sectionslide{Banded Case}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{}
+    \slideheader{Banded Precision Matrix Case}
+    \begin{itemize}
+        \item The ANT estimator considers the general case of sparse precision
+            matrices.
+        \item Zhou et al (2016) introduces the ANT technique in a cosmological
+            setting.
+        \item OLS for entrywise estimates with assumed sparsity pattern.
+        \item Off-diagonals are smoothed (assume that nearby entries are
+            similar).
+        \item Smoothed matrix is projected in maximum-likelihood to the space
+            of symmetric positive-definite matrices.
+        \item Off-diagonal thresholded to zero if maximum value fails to exceed
+            some false-discovery threshold.
+    \end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile] \frametitle{}
+    \slideheader{Next Steps}
+    \begin{itemize}
+        \item Distill estimation technique from cosmology paper for analysis.
+        \item Define a parameter space for banded precision matrices that lends
+            itself to analysis.
+        \item Intuition for an upper bound on risk for such an estimator,
+            and proof.
+        \item Identify subparameter space for lower bound, and proof.
+    \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
-
